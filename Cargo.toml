@@ -1,0 +1,8 @@
+[package]
+name = "rustixWM"
+version = "0.1.0"
+edition = "2021"
+description = "Minimalist X11 window manager in Rust for FreeBSD, successor to six wm"
+
+[dependencies]
+x11rb = { version = "0.13", features = ["allow-unsafe-code"] }
