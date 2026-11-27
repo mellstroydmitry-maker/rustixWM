@@ -123,7 +123,7 @@ impl Wm {
     }
 
     fn grab_keys(&self) -> Result<(), Box<dyn std::error::Error>> {
-        for kc in [36u8, 24, 23, 28, 41, 10, 11, 12, 13, 14, 15] {
+        for kc in [36u8, 40, 24, 23, 28, 41, 10, 11, 12, 13, 14, 15] {
             self.conn.grab_key(false, self.root, MOD, kc, GrabMode::ASYNC, GrabMode::ASYNC)?;
         }
         for kc in [26u8, 10, 11, 12, 13, 14, 15] {
@@ -225,6 +225,7 @@ impl Wm {
                     let shift = e.state.contains(KeyButMask::SHIFT);
                     match e.detail {
                         36 => { let _ = Command::new("TixTerm").spawn(); }
+                        40 => { let _ = Command::new("TixMenu").spawn(); }
                         24 => if let Some(w) = self.focused {
 let msg = ClientMessageEvent::new(32, w, self.wm_protocols, [self.wm_delete, x11rb::CURRENT_TIME, 0, 0, 0]);
 let _ = self.conn.send_event(false, w, EventMask::NO_EVENT, msg);
